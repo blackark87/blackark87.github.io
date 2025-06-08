@@ -1,0 +1,101 @@
+<style>
+    /* Summary Section Styles */
+    .content-section {
+        background: var(--background-secondary);
+        position: relative;
+    }
+    
+    .section-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 3rem;
+        gap: 1rem;
+    }
+    
+    .section-header i {
+        font-size: 2rem;
+        color: var(--accent-color);
+        width: 50px;
+        text-align: center;
+    }
+    
+    .section-header h2 {
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+        font-weight: 700;
+        color: var(--text-primary);
+        margin: 0;
+    }
+    
+    .section-divider {
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-color) 0%, transparent 100%);
+        border-radius: 2px;
+        margin-bottom: 3rem;
+    }
+    
+    .summary-card {
+        background: var(--surface-secondary);
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--accent-color);
+        position: relative;
+        color: var(--text-primary);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-md);
+        transition: var(--transition-normal);
+    }
+    
+    .summary-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-xl);
+        border-color: var(--accent-color);
+    }
+    
+    .summary-card .card-body {
+        color: var(--text-primary);
+        padding: 2rem;
+    }
+    
+    .summary-card::before {
+        content: '💭';
+        position: absolute;
+        top: 1rem;
+        right: 1.5rem;
+        font-size: 2rem;
+        opacity: 0.3;
+    }
+    
+    .lead {
+        color: var(--text-primary);
+        font-size: 1.125rem;
+        line-height: 1.8;
+    }
+    
+    @media (max-width: 768px) {
+        .section-header {
+            flex-direction: column;
+            text-align: center;
+            align-items: center;
+        }
+    }
+    </style>
+    
+    <section class="content-section py-5">
+        <div class="container">
+            <div class="section-header">
+                <i class="fas fa-user-circle icon-fallback" data-fallback="👤"></i>
+                <h2>요약</h2>
+            </div>
+            <div class="section-divider"></div>
+            
+            <div class="card summary-card">
+                <div class="card-body">
+                    <p class="lead mb-4">
+                        <strong>9년차 Java 백엔드 개발자</strong>로서 임베디드 서버 웹페이지 구축을 시작으로 win32 MFC 프로그램 개발과 서버 솔루션 웹연동, PC 유지보수 및 OA 관리 업무, ActiveX 솔루션 설치/커스터마이즈, 검색엔진 설치 및 DB 연동, 회원 관리/백오피스 구축, 결제/상품 등록/파일 업로드 등 대부분의 기능과 CS 유지보수, 팀 리딩을 경험했습니다.
+                    </p>
+                    <p class="mb-0">
+                        현재는 <strong>다중 서비스 시스템</strong>을 담당하는 백엔드 개발자로서 <strong>Java/Spring Boot 기반 시스템 개발</strong>, <strong>AI 서비스 연동</strong>, <strong>이중화 시스템 관리</strong> 전문성을 보유하고 있습니다. <strong>온프레미스 서버 환경</strong>과 <strong>AWS 클라우드 환경</strong> 모두에서 시스템 구축 및 운영 경험을 통해 다양한 인프라 환경에 적응 가능합니다.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>

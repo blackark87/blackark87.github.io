@@ -1,0 +1,283 @@
+<style>
+    /* Credit Section Styles */
+    .credit-section {
+        background: var(--surface-primary);
+        border-top: 1px solid var(--border-color);
+        margin-top: 3rem;
+    }
+    
+    .credit-card {
+        background: var(--surface-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-md);
+        transition: var(--transition-normal);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .credit-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent-color) 0%, var(--info-color) 50%, var(--accent-color) 100%);
+        background-size: 200% 100%;
+        animation: shimmer 3s ease-in-out infinite;
+    }
+    
+    @keyframes shimmer {
+        0%, 100% { background-position: 200% 0; }
+        50% { background-position: -200% 0; }
+    }
+    
+    .credit-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--accent-color);
+    }
+    
+    .credit-card .card-body {
+        padding: 2rem;
+        color: var(--text-primary);
+    }
+    
+    .claude-logo {
+        font-size: 2.5rem;
+        color: var(--accent-color);
+        margin-bottom: 1rem;
+        display: inline-block;
+        transition: var(--transition-normal);
+    }
+    
+    .credit-card:hover .claude-logo {
+        transform: scale(1.1) rotate(5deg);
+    }
+    
+    .credit-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+    }
+    
+    .credit-text {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+    
+    .claude-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--accent-color);
+        text-decoration: none;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+        border: 1px solid var(--accent-color);
+        border-radius: var(--border-radius-md);
+        transition: var(--transition-normal);
+        font-size: 0.9rem;
+    }
+    
+    .claude-link:hover {
+        background: var(--accent-color);
+        color: var(--primary-dark);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-sm);
+    }
+    
+    .version-info {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.8rem;
+        color: var(--text-muted);
+    }
+    
+    @media (max-width: 768px) {
+        .credit-card .card-body {
+            padding: 1.5rem;
+        }
+        
+        .claude-logo {
+            font-size: 2rem;
+        }
+    }
+    </style>
+    
+    <section class="credit-section py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="card credit-card">
+                        <div class="card-body">
+                            <div class="claude-logo">
+                                <i class="fas fa-robot icon-fallback" data-fallback="🤖"></i>
+                            </div>
+                            <h5 class="credit-title">이 이력서는 Claude와 함께 제작되었습니다</h5>
+                            <p class="credit-text">
+                                이 웹 이력서는 <strong>Anthropic의 Claude AI</strong>와의 협업을 통해 디자인하고 개발되었습니다. 
+                                모던한 디자인, 반응형 레이아웃, 그리고 사용자 경험 최적화까지 
+                                AI의 도움을 받아 완성된 결과물입니다.
+                            </p>
+                            <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" class="claude-link">
+                                <i class="fas fa-external-link-alt icon-fallback" data-fallback="🔗"></i>
+                                Claude AI 알아보기
+                            </a>
+                            <div class="version-info">
+                                <div>Created with Claude Sonnet 4 • 2025.06</div>
+                                <div>Built with Bootstrap 5, FontAwesome 6, and modern web technologies</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+    // ES2024+ Credit section animation using jQuery and modern JavaScript
+    class CreditAnimator {
+        #clickCount = 0;
+        #$creditCard = null;
+        #$claudeLogo = null;
+    
+        constructor() {
+            this.init();
+        }
+    
+        init() {
+            $(() => {
+                this.#$creditCard = $('.credit-card');
+                this.#$claudeLogo = $('.claude-logo');
+                this.#setupAnimation();
+                this.#setupEasterEgg();
+            });
+        }
+    
+        #setupAnimation() {
+            if (!('IntersectionObserver' in window)) {
+                this.#$creditCard.addClass('animate');
+                return;
+            }
+    
+            const observerOptions = {
+                threshold: 0.3,
+                rootMargin: '0px 0px -50px 0px'
+            };
+    
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $(entry.target).animate({
+                            opacity: 1
+                        }, 800).css({
+                            transform: 'translateY(0) scale(1)'
+                        });
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+    
+            if (this.#$creditCard.length) {
+                this.#$creditCard.css({
+                    opacity: '0',
+                    transform: 'translateY(30px) scale(0.95)',
+                    transition: 'transform 0.8s ease-out'
+                });
+                observer.observe(this.#$creditCard[0]);
+            }
+        }
+    
+        #setupEasterEgg() {
+            if (!this.#$claudeLogo.length) return;
+    
+            // Modern click handler with arrow function and private methods
+            this.#$claudeLogo.on('click', (e) => {
+                e.preventDefault();
+                this.#handleLogoClick();
+            });
+    
+            // Add hover effect
+            this.#$claudeLogo.on('mouseenter', () => {
+                this.#$claudeLogo.css('transform', 'scale(1.1) rotate(5deg)');
+            }).on('mouseleave', () => {
+                if (this.#clickCount < 8) {
+                    this.#$claudeLogo.css('transform', 'scale(1) rotate(0deg)');
+                }
+            });
+        }
+    
+        #handleLogoClick() {
+            this.#clickCount++;
+            
+            // Animate rotation with each click
+            this.#$claudeLogo.css('transform', `scale(1.2) rotate(${this.#clickCount * 45}deg)`);
+            
+            if (this.#clickCount >= 8) {
+                this.#triggerSpinAnimation();
+            } else {
+                // Return to normal after short delay
+                setTimeout(() => {
+                    this.#$claudeLogo.css('transform', 'scale(1) rotate(0deg)');
+                }, 300);
+            }
+        }
+    
+        #triggerSpinAnimation() {
+            // Add spin class and reset after animation
+            this.#$claudeLogo.addClass('spinning');
+            
+            setTimeout(() => {
+                this.#$claudeLogo.removeClass('spinning').css({
+                    transform: 'scale(1) rotate(0deg)',
+                    animation: ''
+                });
+                this.#clickCount = 0;
+            }, 2000);
+        }
+    
+        // Static method to add required styles
+        static addStyles() {
+            const styles = `
+                @keyframes spin {
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+                
+                .spinning {
+                    animation: spin 2s linear infinite !important;
+                }
+            `;
+            
+            if (!$('#credit-styles').length) {
+                $('<style>').attr('id', 'credit-styles').text(styles).appendTo('head');
+            }
+        }
+    }
+    
+    // Initialize credit animator when DOM is ready
+    $(() => {
+        CreditAnimator.addStyles();
+        new CreditAnimator();
+    });
+    
+    // Optional: Add analytics tracking for easter egg
+    const trackEasterEgg = () => {
+        console.log('🥚 Easter egg activated! Claude logo spinning...');
+        
+        // You can add Google Analytics or other tracking here
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'easter_egg', {
+                event_category: 'engagement',
+                event_label: 'claude_logo_spin'
+            });
+        }
+    };
+    </script>

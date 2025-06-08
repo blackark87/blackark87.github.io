@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ark (신교진) - Backend Developer</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Dark Theme Color Palette */
+            --primary-color: #1a1a1a;
+            --primary-dark: #000000;
+            --primary-light: #2d2d2d;
+            --secondary-color: #404040;
+            --accent-color: #00d4aa;
+            --accent-dark: #00b896;
+            --success-color: #4ade80;
+            --warning-color: #fbbf24;
+            --error-color: #ef4444;
+            --info-color: #3b82f5;
+            
+            /* Surface Colors */
+            --surface-primary: #2a2a2a;
+            --surface-secondary: #333333;
+            --surface-tertiary: #404040;
+            --background-primary: #1a1a1a;
+            --background-secondary: #222222;
+            
+            /* Text Colors */
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --text-tertiary: #b0b0b0;
+            --text-accent: var(--accent-color);
+            --text-muted: #999999;
+            
+            /* Border & Divider */
+            --border-color: #404040;
+            --divider-color: #505050;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            
+            /* Border Radius */
+            --border-radius-sm: 8px;
+            --border-radius-md: 12px;
+            --border-radius-lg: 16px;
+            --border-radius-xl: 20px;
+            
+            /* Transitions */
+            --transition-fast: all 0.15s cubic-bezier(0.4, 0.0, 0.2, 1);
+            --transition-normal: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            --transition-slow: all 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--background-primary) 0%, var(--primary-color) 100%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Loading Spinner */
+        .loading-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--background-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--surface-tertiary);
+            border-top: 3px solid var(--accent-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-color) 0%, var(--info-color) 100%);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* Icon Fallback System */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            text-align: center;
+            font-style: normal;
+        }
+
+        /* FontAwesome 로드 실패 시 대체 */
+        .icon-fallback {
+            font-family: 'Font Awesome 6 Free', 'Font Awesome 6 Brands', 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+            font-weight: 900;
+        }
+
+        .fontawesome-failed .icon-fallback::before {
+            content: attr(data-fallback) !important;
+            font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif !important;
+            font-weight: normal !important;
+        }
+
+        /* Main Content Sections */
+        .section-container {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-normal);
+        }
+
+        .section-container.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .error-message {
+            background: var(--surface-secondary);
+            border: 1px solid var(--error-color);
+            border-radius: var(--border-radius-md);
+            padding: 1rem;
+            margin: 1rem 0;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        .retry-button {
+            background: var(--error-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius-sm);
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: var(--transition-normal);
+        }
+
+        .retry-button:hover {
+            background: #dc2626;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
+            border: none;
+            border-radius: 50%;
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            cursor: pointer;
+            transition: var(--transition-normal);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .fab.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .fab:hover {
+            transform: scale(1.1) translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .fab {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-container" id="loadingContainer">
+        <div class="text-center">
+            <div class="spinner mb-3"></div>
+            <p class="text-muted">이력서를 불러오는 중...</p>
+            <p class="small text-muted" id="loadingStatus">초기화 중...</p>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Header Section -->
+    <div id="headerSection" class="section-container"></div>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Summary Section -->
+        <div id="summarySection" class="section-container"></div>
+
+        <!-- Experience Section -->
+        <div id="experienceSection" class="section-container"></div>
+
+        <!-- Skills Section -->
+        <div id="skillsSection" class="section-container"></div>
+
+        <!-- Education Section -->
+        <div id="educationSection" class="section-container"></div>
+
+        <!-- Features Section -->
+        <div id="featuresSection" class="section-container"></div>
+
+        <!-- Credit Section -->
+        <div id="creditSection" class="section-container"></div>
+    </main>
+
+    <!-- Floating Action Button -->
+    <button class="fab" id="fabButton" onclick="scrollToTop()" title="맨 위로">
+        <i class="fas fa-chevron-up icon-fallback" data-fallback="⬆️"></i>
+    </button>
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        class ResumeLoader {
+            // ES2024+ 클래스 필드 선언
+            #sections = [
+                { id: 'headerSection', file: 'sections/header.html', name: '헤더' },
+                { id: 'summarySection', file: 'sections/summary.html', name: '요약' },
+                { id: 'experienceSection', file: 'sections/experience.html', name: '경력사항' },
+                { id: 'skillsSection', file: 'sections/skills.html', name: '기술스택' },
+                { id: 'educationSection', file: 'sections/education.html', name: '학력/자격증' },
+                { id: 'featuresSection', file: 'sections/features.html', name: '주요특징' },
+                { id: 'creditSection', file: 'sections/credit.html', name: '크레딧' }
+            ];
+            
+            #loadedCount = 0;
+            #$progressBar = $('#progressBar');
+            #$loadingContainer = $('#loadingContainer');
+            #$loadingStatus = $('#loadingStatus');
+            #$fab = $('#fabButton');
+            
+            get totalSections() {
+                return this.#sections.length;
+            }
+
+            constructor() {
+                this.init();
+            }
+
+            async init() {
+                try {
+                    await this.#checkFontAwesome();
+                    await this.#loadAllSections();
+                    this.#setupEventListeners();
+                    this.#hideLoading();
+                } catch (error) {
+                    console.error('이력서 로딩 실패:', error);
+                    this.#showError('이력서를 불러오는데 실패했습니다.');
+                }
+            }
+
+            async #checkFontAwesome() {
+                return new Promise((resolve) => {
+                    const $testIcon = $('<i>').addClass('fas fa-home').css({
+                        position: 'absolute',
+                        left: '-9999px'
+                    });
+                    
+                    $('body').append($testIcon);
+
+                    setTimeout(() => {
+                        const fontFamily = $testIcon.css('font-family');
+                        
+                        if (!fontFamily?.includes('Font Awesome')) {
+                            $('body').addClass('fontawesome-failed');
+                            console.log('FontAwesome 로드 실패 - 유니코드 대체 사용');
+                        }
+                        
+                        $testIcon.remove();
+                        resolve();
+                    }, 100);
+                });
+            }
+
+            async #loadSection(section) {
+                try {
+                    this.#updateLoadingStatus(`${section.name} 로딩 중...`);
+                    
+                    const response = await fetch(section.file);
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}: ${section.file}`);
+                    }
+                    
+                    const html = await response.text();
+                    const $container = $(`#${section.id}`);
+                    
+                    if ($container.length) {
+                        $container.html(html);
+                        
+                        // 섹션 로딩 완료 애니메이션
+                        setTimeout(() => {
+                            $container.addClass('loaded');
+                        }, 100);
+                    }
+                    
+                    this.#loadedCount++;
+                    this.#updateProgress();
+                    
+                } catch (error) {
+                    console.error(`섹션 로딩 실패 (${section.name}):`, error);
+                    this.#showSectionError(section);
+                }
+            }
+
+            async #loadAllSections() {
+                // 헤더는 우선 로딩
+                await this.#loadSection(this.#sections[0]);
+                
+                // 나머지 섹션들은 병렬 로딩
+                const remainingSections = this.#sections.slice(1);
+                await Promise.allSettled(
+                    remainingSections.map(section => this.#loadSection(section))
+                );
+            }
+
+            #showSectionError(section) {
+                const $container = $(`#${section.id}`);
+                if ($container.length) {
+                    $container.html(`
+                        <div class="container py-4">
+                            <div class="error-message">
+                                <i class="fas fa-exclamation-triangle icon-fallback" data-fallback="⚠️"></i>
+                                <p><strong>${section.name}</strong> 섹션을 불러올 수 없습니다.</p>
+                                <button class="retry-button" data-section-id="${section.id}">
+                                    다시 시도
+                                </button>
+                            </div>
+                        </div>
+                    `);
+                    $container.addClass('loaded');
+                    
+                    // 재시도 버튼 이벤트 바인딩
+                    $container.find('.retry-button').on('click', (e) => {
+                        const sectionId = $(e.target).data('section-id');
+                        this.retrySection(sectionId);
+                    });
+                }
+                this.#loadedCount++;
+                this.#updateProgress();
+            }
+
+            async retrySection(sectionId) {
+                const section = this.#sections.find(s => s.id === sectionId);
+                if (section) {
+                    const $container = $(`#${sectionId}`);
+                    $container.html('<div class="container py-4 text-center"><div class="spinner"></div></div>');
+                    await this.#loadSection(section);
+                }
+            }
+
+            #updateLoadingStatus(status) {
+                this.#$loadingStatus.text(status);
+            }
+
+            #updateProgress() {
+                const progress = (this.#loadedCount / this.totalSections) * 100;
+                this.#$progressBar.css('width', `${progress}%`);
+            }
+
+            #hideLoading() {
+                setTimeout(() => {
+                    this.#$loadingContainer.fadeOut(300);
+                }, 500);
+            }
+
+            #showError(message) {
+                this.#$loadingContainer.html(`
+                    <div class="text-center">
+                        <div class="error-message">
+                            <i class="fas fa-exclamation-circle icon-fallback" data-fallback="❌"></i>
+                            <h4>로딩 실패</h4>
+                            <p>${message}</p>
+                            <button class="retry-button" onclick="location.reload()">
+                                페이지 새로고침
+                            </button>
+                        </div>
+                    </div>
+                `);
+            }
+
+            #setupEventListeners() {
+                // Scroll progress bar & FAB visibility using jQuery
+                $(window).on('scroll', this.#handleScroll.bind(this));
+                
+                // Intersection Observer for section animations
+                this.#setupIntersectionObserver();
+                
+                // Keyboard shortcuts
+                $(document).on('keydown', this.#handleKeydown.bind(this));
+                
+                // Network status
+                $(window).on('offline online', this.#handleNetworkChange.bind(this));
+            }
+
+            #handleScroll() {
+                const windowHeight = $(document).height() - $(window).height();
+                const scrolled = ($(window).scrollTop() / windowHeight) * 100;
+                this.#$progressBar.css('width', `${Math.min(scrolled, 100)}%`);
+                
+                // FAB visibility
+                if ($(window).scrollTop() > 300) {
+                    this.#$fab.addClass('show');
+                } else {
+                    this.#$fab.removeClass('show');
+                }
+            }
+
+            #handleKeydown(e) {
+                if (e.key === 'Escape') {
+                    this.scrollToTop();
+                }
+            }
+
+            #handleNetworkChange(e) {
+                const $alerts = $('.alert-warning');
+                
+                if (e.type === 'offline') {
+                    $('body').prepend(`
+                        <div class="alert alert-warning position-fixed top-0 start-50 translate-middle-x" style="z-index: 10000; margin-top: 1rem;">
+                            <i class="fas fa-wifi-slash icon-fallback" data-fallback="📡"></i>
+                            인터넷 연결이 끊어졌습니다.
+                        </div>
+                    `);
+                } else {
+                    $alerts.fadeOut().remove();
+                }
+            }
+
+            #setupIntersectionObserver() {
+                if (!('IntersectionObserver' in window)) return;
+
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            $(entry.target).addClass('animate');
+                        }
+                    });
+                }, observerOptions);
+
+                // 모든 섹션 관찰
+                this.#sections.forEach(section => {
+                    const element = document.getElementById(section.id);
+                    if (element) {
+                        observer.observe(element);
+                    }
+                });
+            }
+
+            scrollToTop() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 800, 'easeInOutCubic');
+            }
+        }
+
+        // Global functions using ES2024+ features
+        const scrollToTop = () => {
+            $('html, body').animate({ scrollTop: 0 }, 800);
+        };
+
+        // Initialize when DOM is ready using jQuery
+        let resumeLoader;
+        $(() => {
+            resumeLoader = new ResumeLoader();
+            
+            // FAB click handler
+            $('#fabButton').on('click', scrollToTop);
+        });
+
+        // Global error handling
+        window.addEventListener('error', (e) => {
+            console.error('전역 오류 발생:', e.error);
+        });
+
+        // jQuery easing for smooth animations
+        $.extend($.easing, {
+            easeInOutCubic: function(x, t, b, c, d) {
+                if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
+                return c / 2 * ((t -= 2) * t * t + 2) + b;
+            }
+        });
+    </script>
+</body>
+</html>

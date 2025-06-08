@@ -1,0 +1,269 @@
+<style>
+    /* Skills Section Styles */
+    .skill-category {
+        background: var(--surface-secondary);
+        border: 1px solid var(--border-color);
+        transition: var(--transition-normal);
+        color: var(--text-primary);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+    }
+    
+    .skill-category:hover {
+        border-color: var(--accent-color);
+        box-shadow: 0 0 20px rgba(0, 212, 170, 0.1);
+        transform: translateY(-2px);
+    }
+    
+    .skill-category-header {
+        background: var(--surface-tertiary);
+        border-bottom: 1px solid var(--border-color);
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .skill-category-header i {
+        font-size: 1.5rem;
+        color: var(--accent-color);
+        width: 30px;
+    }
+    
+    .skill-category-header h4 {
+        margin: 0;
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+    
+    .skill-tags {
+        padding: 1.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+    
+    .skill-tag {
+        background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-dark) 100%);
+        color: var(--primary-dark);
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius-md);
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: var(--transition-normal);
+        cursor: pointer;
+        border: none;
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    
+    .skill-tag::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: var(--transition-normal);
+    }
+    
+    .skill-tag:hover {
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .skill-tag:hover::before {
+        left: 100%;
+    }
+    
+    .skill-tag:active {
+        transform: translateY(0) scale(0.98);
+    }
+    </style>
+    
+    <section class="content-section py-5">
+        <div class="container">
+            <div class="section-header">
+                <i class="fas fa-laptop-code icon-fallback" data-fallback="💻"></i>
+                <h2>기술 스택</h2>
+            </div>
+            <div class="section-divider"></div>
+    
+            <div class="row">
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-server icon-fallback" data-fallback="🖥"></i>
+                            <h4>Backend</h4>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">Spring Boot</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Django</span>
+                            <span class="skill-tag">Flask</span>
+                            <span class="skill-tag">Go</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-database icon-fallback" data-fallback="🗄"></i>
+                            <h4>Database</h4>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">MongoDB</span>
+                            <span class="skill-tag">Neo4j</span>
+                            <span class="skill-tag">Redis</span>
+                            <span class="skill-tag">Oracle</span>
+                            <span class="skill-tag">Hive</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-cloud icon-fallback" data-fallback="☁️"></i>
+                            <h4>Cloud & Infrastructure</h4>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">AWS EC2</span>
+                            <span class="skill-tag">AWS S3</span>
+                            <span class="skill-tag">AWS RDS</span>
+                            <span class="skill-tag">AWS EKS</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Kubernetes</span>
+                            <span class="skill-tag">Terraform</span>
+                            <span class="skill-tag">GitHub Actions</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-palette icon-fallback" data-fallback="🎨"></i>
+                            <h4>Frontend & Templates</h4>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Vue.js</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">jQuery</span>
+                            <span class="skill-tag">JSP</span>
+                            <span class="skill-tag">Thymeleaf</span>
+                            <span class="skill-tag">FreeMarker</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-brain icon-fallback" data-fallback="🧠"></i>
+                            <h4>AI & External Services</h4>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">ChatGPT API</span>
+                            <span class="skill-tag">Claude API</span>
+                            <span class="skill-tag">WebSocket</span>
+                            <span class="skill-tag">RESTful API</span>
+                            <span class="skill-tag">검색엔진</span>
+                            <span class="skill-tag">분석엔진</span>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="card skill-category">
+                        <div class="skill-category-header">
+                            <i class="fas fa-chart-line icon-fallback" data-fallback="📈"></i>
+                            <h4>DevOps & Monitoring</h4>
+                        </div>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Airflow</span>
+                            <span class="skill-tag">Sentry</span>
+                            <span class="skill-tag">HyperDX</span>
+                            <span class="skill-tag">Redash</span>
+                            <span class="skill-tag">Ansible</span>
+                            <span class="skill-tag">Shell Script</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+    // ES2024+ Skill tag interaction effects
+    $(() => {
+        const createRippleEffect = (element, event) => {
+            const $element = $(element);
+            const rect = element.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = event.clientX - rect.left - size / 2;
+            const y = event.clientY - rect.top - size / 2;
+            
+            const $ripple = $('<span>').css({
+                position: 'absolute',
+                width: `${size}px`,
+                height: `${size}px`,
+                left: `${x}px`,
+                top: `${y}px`,
+                background: 'rgba(255,255,255,0.5)',
+                borderRadius: '50%',
+                transform: 'scale(0)',
+                animation: 'ripple 0.6s linear',
+                pointerEvents: 'none'
+            });
+            
+            $element.css({
+                position: 'relative',
+                overflow: 'hidden'
+            }).append($ripple);
+            
+            setTimeout(() => $ripple.remove(), 600);
+        };
+        
+        // Skill tag click handlers using modern event delegation
+        $(document).on('click', '.skill-tag', function(e) {
+            createRippleEffect(this, e);
+            
+            // Optional: Log skill interaction for analytics
+            console.log(`Skill clicked: ${$(this).text().trim()}`);
+        });
+        
+        // Hover effects using jQuery
+        $(document).on('mouseenter', '.skill-tag', function() {
+            $(this).css('transform', 'translateY(-2px) scale(1.05)');
+        }).on('mouseleave', '.skill-tag', function() {
+            $(this).css('transform', 'translateY(0) scale(1)');
+        });
+    });
+    
+    // Dynamic ripple animation styles using modern CSS-in-JS approach
+    const addRippleStyles = () => {
+        const styles = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        
+        if (!$('#ripple-styles').length) {
+            $('<style>').attr('id', 'ripple-styles').text(styles).appendTo('head');
+        }
+    };
+    
+    // Initialize styles when DOM is ready
+    $(() => addRippleStyles());
+    </script>

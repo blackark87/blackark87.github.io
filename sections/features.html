@@ -1,0 +1,274 @@
+<style>
+    /* Features Section Styles */
+    .feature-card {
+        background: var(--surface-secondary);
+        border: 1px solid var(--border-color);
+        text-align: center;
+        transition: var(--transition-normal);
+        position: relative;
+        overflow: hidden;
+        color: var(--text-primary);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-md);
+        height: 100%;
+    }
+    
+    .feature-card .card-body {
+        color: var(--text-primary);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 250px;
+    }
+    
+    .feature-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+        opacity: 0;
+        transition: var(--transition-slow);
+    }
+    
+    .feature-card:hover::before {
+        opacity: 0.05;
+    }
+    
+    .feature-card:hover {
+        border-color: var(--accent-color);
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-xl);
+    }
+    
+    .feature-icon {
+        font-size: 3rem;
+        color: var(--accent-color);
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 1;
+        transition: var(--transition-normal);
+    }
+    
+    .feature-card:hover .feature-icon {
+        transform: scale(1.1);
+        color: var(--accent-dark);
+    }
+    
+    .feature-card h5 {
+        color: var(--text-primary);
+        font-weight: 600;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+        font-size: 1.25rem;
+    }
+    
+    .feature-card p {
+        color: var(--text-secondary);
+        position: relative;
+        z-index: 1;
+        line-height: 1.6;
+        margin: 0;
+    }
+    
+    .feature-card strong {
+        color: var(--accent-color);
+        font-weight: 600;
+    }
+    
+    /* Staggered animation for feature cards */
+    .feature-card:nth-child(1) { animation-delay: 0.1s; }
+    .feature-card:nth-child(2) { animation-delay: 0.2s; }
+    .feature-card:nth-child(3) { animation-delay: 0.3s; }
+    .feature-card:nth-child(4) { animation-delay: 0.4s; }
+    .feature-card:nth-child(5) { animation-delay: 0.5s; }
+    .feature-card:nth-child(6) { animation-delay: 0.6s; }
+    
+    @media (max-width: 768px) {
+        .feature-card .card-body {
+            min-height: 200px;
+            padding: 1.5rem;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+    }
+    </style>
+    
+    <section class="content-section py-5">
+        <div class="container">
+            <div class="section-header">
+                <i class="fas fa-star icon-fallback" data-fallback="⭐"></i>
+                <h2>주요 특징</h2>
+            </div>
+            <div class="section-divider"></div>
+    
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-layer-group icon-fallback" data-fallback="📚"></i>
+                            </div>
+                            <h5>다중 서비스 관리</h5>
+                            <p>현재 <strong>15개의 서비스 시스템</strong>을 담당하며, Java와 Python 기반의 다양한 시스템을 효율적으로 관리하고 있습니다. 대규모 시스템 아키텍처 설계 및 운영 경험을 보유했습니다.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-robot icon-fallback" data-fallback="🤖"></i>
+                            </div>
+                            <h5>AI 서비스 연동</h5>
+                            <p><strong>ChatGPT, Claude</strong> 등 최신 LLM 기술을 활용한 서비스 개발 및 운영 경험을 보유하고 있습니다. AI API 통합, 비용 최적화, 장애 대응까지 전문적으로 관리합니다.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt icon-fallback" data-fallback="🛡️"></i>
+                            </div>
+                            <h5>이중화 시스템 운영</h5>
+                            <p>대부분의 핵심 서비스를 <strong>이중화</strong>로 구성하여 무중단 서비스 운영 경험을 쌓았습니다. 고가용성 시스템 설계 및 장애 복구 전문성을 갖추고 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-code-branch icon-fallback" data-fallback="🔀"></i>
+                            </div>
+                            <h5>레거시 시스템 개선</h5>
+                            <p><strong>7년간 누적된 다양한 코딩 스타일</strong>을 통합하고 리팩토링하여 시스템 안정성을 확보했습니다. 기술 부채 해결 및 코드 품질 개선에 대한 실무 경험이 풍부합니다.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-cloud-upload-alt icon-fallback" data-fallback="☁️"></i>
+                            </div>
+                            <h5>하이브리드 인프라 경험</h5>
+                            <p><strong>AWS 클라우드</strong>와 <strong>온프레미스 서버</strong> 환경 모두에서 시스템 구축 및 운영 경험을 보유하고 있습니다. 다양한 인프라 환경에 빠르게 적응 가능합니다.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card feature-card h-100">
+                        <div class="card-body">
+                            <div class="feature-icon">
+                                <i class="fas fa-chalkboard-teacher icon-fallback" data-fallback="👨‍🏫"></i>
+                            </div>
+                            <h5>교육 서비스 도메인 전문성</h5>
+                            <p><strong>에듀테크</strong> 분야에서 초등학생 대상 학습 플랫폼 개발을 통해 교육 서비스에 대한 깊은 이해도를 갖고 있습니다. 사용자 친화적 서비스 설계 경험이 풍부합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+    // ES2024+ Features section animation using jQuery and modern JavaScript
+    class FeatureAnimator {
+        #observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+    
+        constructor() {
+            this.init();
+        }
+    
+        init() {
+            $(() => {
+                this.#setupStaggeredAnimations();
+                this.#setupHoverEffects();
+            });
+        }
+    
+        #setupStaggeredAnimations() {
+            const $featureCards = $('.feature-card');
+            
+            if (!('IntersectionObserver' in window)) {
+                // Fallback for older browsers
+                $featureCards.addClass('animate');
+                return;
+            }
+    
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            $(entry.target).addClass('animate').css({
+                                opacity: '1',
+                                transform: 'translateY(0)'
+                            });
+                        }, index * 100);
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, this.#observerOptions);
+    
+            // Initialize cards with hidden state
+            $featureCards.each(function(index) {
+                $(this).css({
+                    opacity: '0',
+                    transform: 'translateY(30px)',
+                    transition: 'all 0.6s ease-out'
+                });
+                observer.observe(this);
+            });
+        }
+    
+        #setupHoverEffects() {
+            // Modern event delegation with jQuery
+            $(document).on('mouseenter', '.feature-card', function() {
+                const $icon = $(this).find('.feature-icon i');
+                $icon.css('transform', 'scale(1.2) rotate(5deg)');
+            }).on('mouseleave', '.feature-card', function() {
+                const $icon = $(this).find('.feature-icon i');
+                $icon.css('transform', 'scale(1) rotate(0deg)');
+            });
+    
+            // Advanced hover effects with easing
+            $(document).on('mouseenter', '.feature-card', function() {
+                $(this).stop().animate({
+                    marginTop: '-8px'
+                }, 200, 'easeOutCubic');
+            }).on('mouseleave', '.feature-card', function() {
+                $(this).stop().animate({
+                    marginTop: '0px'
+                }, 200, 'easeOutCubic');
+            });
+        }
+    }
+    
+    // Initialize feature animator
+    const featureAnimator = new FeatureAnimator();
+    
+    // Add jQuery easing function if not already present
+    $.extend($.easing, {
+        easeOutCubic: function(x, t, b, c, d) {
+            return c * ((t = t / d - 1) * t * t + 1) + b;
+        }
+    });
+    </script>

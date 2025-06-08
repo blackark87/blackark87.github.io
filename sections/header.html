@@ -1,0 +1,152 @@
+<style>
+    /* Header Section Styles */
+    .header-section {
+        background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-color) 50%, var(--surface-primary) 100%);
+        position: relative;
+        overflow: hidden;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+    }
+    
+    .header-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 30% 40%, rgba(0, 212, 170, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                    radial-gradient(circle at 40% 80%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+        animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(180deg); }
+    }
+    
+    .header-content {
+        position: relative;
+        z-index: 2;
+    }
+    
+    .profile-image {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        border: 4px solid var(--accent-color);
+        box-shadow: 0 0 30px rgba(0, 212, 170, 0.3);
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, var(--surface-secondary) 0%, var(--surface-tertiary) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: var(--accent-color);
+    }
+    
+    .name-title h1 {
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-color) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.02em;
+    }
+    
+    .name-subtitle {
+        font-size: clamp(1rem, 2.5vw, 1.3rem);
+        color: var(--text-secondary);
+        font-weight: 400;
+        margin-bottom: 1rem;
+        opacity: 0.8;
+    }
+    
+    .name-title h2 {
+        font-size: clamp(1.2rem, 3vw, 1.8rem);
+        color: var(--text-secondary);
+        font-weight: 500;
+        margin-bottom: 2rem;
+    }
+    
+    .contact-info {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    
+    .contact-item {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius-md);
+        padding: 0.75rem 1.5rem;
+        text-decoration: none;
+        color: var(--text-primary);
+        transition: var(--transition-normal);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .contact-item:hover {
+        background: rgba(0, 212, 170, 0.1);
+        border-color: var(--accent-color);
+        color: var(--text-primary);
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+        .header-section {
+            min-height: 80vh;
+            text-align: center;
+        }
+        
+        .contact-info {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+    </style>
+    
+    <header class="header-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <div class="header-content">
+                        <div class="profile-image mx-auto">
+                            <i class="fas fa-user-tie icon-fallback" data-fallback="👨‍💼"></i>
+                        </div>
+                        <div class="name-title">
+                            <h1>ark</h1>
+                            <div class="name-subtitle">(신교진)</div>
+                            <h2>
+                                <i class="fas fa-code icon-fallback" data-fallback="💻"></i> 
+                                Backend Developer
+                            </h2>
+                        </div>
+                        <div class="contact-info">
+                            <a href="tel:+821077702006" class="contact-item">
+                                <i class="fas fa-phone icon-fallback" data-fallback="📞"></i>
+                                +82-10-7770-2006
+                            </a>
+                            <a href="mailto:blackark87@gmail.com" class="contact-item">
+                                <i class="fas fa-envelope icon-fallback" data-fallback="✉️"></i>
+                                blackark87@gmail.com
+                            </a>
+                            <a href="https://github.com/blackark87" target="_blank" class="contact-item">
+                                <i class="fab fa-github icon-fallback" data-fallback="🔗"></i>
+                                GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>

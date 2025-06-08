@@ -1,0 +1,332 @@
+<style>
+    /* Experience Section Styles */
+    .job-card {
+        background: var(--surface-secondary);
+        border-left: 4px solid var(--accent-color);
+        position: relative;
+        overflow: hidden;
+        color: var(--text-primary);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-md);
+        transition: var(--transition-normal);
+        border: 1px solid var(--border-color);
+    }
+    
+    .job-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-xl);
+        border-color: var(--accent-color);
+    }
+    
+    .job-card .card-body {
+        color: var(--text-primary);
+        padding: 2rem;
+    }
+    
+    .job-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+        opacity: 0.05;
+        transform: translate(30px, -30px);
+    }
+    
+    .job-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .company-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--accent-color);
+        margin: 0;
+    }
+    
+    .job-period {
+        background: var(--surface-tertiary);
+        color: var(--text-secondary);
+        padding: 0.5rem 1rem;
+        border-radius: var(--border-radius-md);
+        font-size: 0.9rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        white-space: nowrap;
+    }
+    
+    .job-title {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+    }
+    
+    .achievement-section {
+        margin-bottom: 2rem;
+    }
+    
+    .achievement-section:last-child {
+        margin-bottom: 0;
+    }
+    
+    .achievement-section h5 {
+        color: var(--accent-color);
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.125rem;
+    }
+    
+    .achievement-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .achievement-list li {
+        background: var(--surface-tertiary);
+        color: var(--text-primary);
+        border-radius: var(--border-radius-sm);
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+        border-left: 3px solid var(--accent-color);
+        transition: var(--transition-normal);
+        position: relative;
+        padding-left: 3rem;
+        line-height: 1.6;
+    }
+    
+    .achievement-list li::before {
+        content: '▶️';
+        position: absolute;
+        left: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.8rem;
+    }
+    
+    .achievement-list li:hover {
+        background: var(--surface-primary);
+        transform: translateX(8px);
+    }
+    
+    .tech-stack-section {
+        background: var(--surface-tertiary);
+        border-radius: var(--border-radius-md);
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+        color: var(--text-primary);
+    }
+    
+    .tech-stack-section h6 {
+        color: var(--accent-color);
+        font-weight: 600;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+        .job-header {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .job-period {
+            align-self: flex-start;
+        }
+    }
+    </style>
+    
+    <section class="content-section py-5">
+        <div class="container">
+            <div class="section-header">
+                <i class="fas fa-briefcase icon-fallback" data-fallback="💼"></i>
+                <h2>경력사항</h2>
+            </div>
+            <div class="section-divider"></div>
+    
+            <!-- 이쿠얼키주식회사 -->
+            <div class="card job-card mb-4">
+                <div class="card-body">
+                    <div class="job-header">
+                        <h3 class="company-name">이쿠얼키주식회사</h3>
+                        <div class="job-period">
+                            <i class="fas fa-calendar-alt icon-fallback" data-fallback="📅"></i>
+                            2023.09 - 재직 중 (1년 9개월)
+                        </div>
+                    </div>
+                    <p class="job-title">백엔드 개발자 - 다중 서비스 시스템 개발 및 운영</p>
+    
+                    <div class="achievement-section">
+                        <h5><i class="fas fa-layer-group icon-fallback" data-fallback="📚"></i> 15개 서비스 시스템 담당</h5>
+                        <ul class="achievement-list">
+                            <li><strong>Java 기반 시스템 (10개):</strong> 초등학생 대상 학습 플랫폼(이중화, ChatGPT 연동), 배치 서버, 어드민 사이트, 캠퍼스 사이트(이중화), 푸시 관리 API 서버(이중화), SMS 발송 API 서버, 인코딩 서버, 대시보드 API 서버, AIQ 서비스(Java 17 + Spring Boot 3.2.3)</li>
+                            <li><strong>Python 기반 시스템 (4개):</strong> 초등 저학년 학습 플랫폼(Django 4.0, 이중화), Django 어드민 사이트, LLM 연동 메시지 자동 생성 시스템(Flask, Claude 연동, 이중화)</li>
+                            <li><strong>모바일:</strong> Flutter 기반 Android/iOS 앱 연동 API 개발</li>
+                        </ul>
+                    </div>
+    
+                    <div class="achievement-section">
+                        <h5><i class="fas fa-robot icon-fallback" data-fallback="🤖"></i> AI 서비스 연동 및 관리</h5>
+                        <ul class="achievement-list">
+                            <li><strong>ChatGPT 연동:</strong> 초등 고학년 학습 플랫폼에서 직접 연동 개발</li>
+                            <li><strong>Claude 연동:</strong> Flask 기반 LLM 시스템(이중화)을 통한 메시지 자동 생성</li>
+                            <li><strong>서비스 관리:</strong> AI 서비스 계정 관리, 비용 최적화, 외부 서비스 장애 대응</li>
+                        </ul>
+                    </div>
+    
+                    <div class="achievement-section">
+                        <h5><i class="fas fa-tools icon-fallback" data-fallback="🛠"></i> 주요 개발 성과</h5>
+                        <ul class="achievement-list">
+                            <li>Google Analytics 연동 최신화 및 이벤트 진행 후 포인트 일괄 지급 기능</li>
+                            <li>월간 이벤트 구현 (사용자 선택 시간대 포인트 2배 및 활동 카운트)</li>
+                            <li>신규 상품(체험권, 구독권) 추가 및 PG사 변경 로직 구현</li>
+                            <li>S3 데이터 호출 시 connection leak 수정</li>
+                            <li>MSA 형태로 서버 재구축 및 Airflow로 배치 시스템 이전</li>
+                        </ul>
+                    </div>
+    
+                    <div class="tech-stack-section">
+                        <h6><i class="fas fa-code icon-fallback" data-fallback="💻"></i> 기술 스택</h6>
+                        <p class="mb-0">Java 1.8/17, Spring Boot 2.3.3/3.2.3, Python 3.9/3.12, Django 4.0, Flask, AWS(EC2, S3, RDS, EKS, ECR, ElastiCache, SES), MySQL, MongoDB, Neo4j, Docker, GitHub Actions</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- 알라딘글로벌알앤디센터 -->
+            <div class="card job-card mb-4">
+                <div class="card-body">
+                    <div class="job-header">
+                        <h3 class="company-name">(주)알라딘글로벌알앤디센터</h3>
+                        <div class="job-period">
+                            <i class="fas fa-calendar-alt icon-fallback" data-fallback="📅"></i>
+                            2022.05 - 2023.09 (1년 5개월)
+                        </div>
+                    </div>
+                    <p class="job-title">백엔드 개발자 - 이커머스 및 라이브 플랫폼 개발</p>
+    
+                    <div class="achievement-section">
+                        <h5><i class="fas fa-shopping-cart icon-fallback" data-fallback="🛒"></i> 쇼핑몰 플랫폼 고도화</h5>
+                        <ul class="achievement-list">
+                            <li>결제 수단 추가 및 환율 정보에 맞춘 환불 분기 처리 구현</li>
+                            <li>판매자/상품 신고 및 차단 시스템 구현</li>
+                            <li>로그인 시 비밀번호 오입력 카운트 및 블락 처리</li>
+                            <li>게이트웨이 서버 필터링 구축</li>
+                        </ul>
+                    </div>
+    
+                    <div class="achievement-section">
+                        <h5><i class="fas fa-video icon-fallback" data-fallback="📺"></i> 라이브 플랫폼 개발</h5>
+                        <ul class="achievement-list">
+                            <li>댓글/대댓글 신고 시 i18n 적용</li>
+                            <li>채팅 도배 체크 및 자동 제재, WebSocket 통신 구현</li>
+                            <li>강제 퇴장(BAN) 및 도네이션 WebSocket 통신</li>
+                            <li>Thymeleaf를 활용한 어드민 사이트 전체 레이아웃 구현</li>
+                        </ul>
+                    </div>
+    
+                    <div class="tech-stack-section">
+                        <h6><i class="fas fa-code icon-fallback" data-fallback="💻"></i> 기술 스택</h6>
+                        <p class="mb-0">Spring Boot, Java, MySQL, Redis, MongoDB, AWS(EC2, S3, RDS, DocumentDB, IVS, ElastiCache), WebSocket, Thymeleaf</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- 코난테크놀로지 -->
+            <div class="card job-card mb-4">
+                <div class="card-body">
+                    <div class="job-header">
+                        <h3 class="company-name">(주)코난테크놀로지</h3>
+                        <div class="job-period">
+                            <i class="fas fa-calendar-alt icon-fallback" data-fallback="📅"></i>
+                            2019.07 - 2022.03 (2년 9개월)
+                        </div>
+                    </div>
+                    <p class="job-title">백엔드 개발자 - 검색 엔진 및 AI 분석 시스템 개발</p>
+    
+                    <div class="achievement-section">
+                        <h5><i class="fas fa-search icon-fallback" data-fallback="🔍"></i> 주요 프로젝트</h5>
+                        <ul class="achievement-list">
+                            <li><strong>검색 엔진 템플릿 리뉴얼:</strong> Vue.js, Go를 활용한 검색 화면 템플릿 리뉴얼</li>
+                            <li><strong>GS Shop TA 2차:</strong> 상품평 텍스트 분석을 통한 상품 인사이트 제공</li>
+                            <li><strong>국세청 빅데이터 분석:</strong> 홈택스/손택스 챗봇 서비스 구축 및 유지보수</li>
+                            <li><strong>법관 인사전보 시스템:</strong> 대법원 인사 전보 시스템 구축 및 패턴 분석</li>
+                            <li><strong>자동차 안전 연구원:</strong> 차량 안전 리스크 분석 시스템 구축</li>
+                            <li><strong>조달청 혁신 상품 플랫폼:</strong> 텍스트 분석 및 특허 검색 시스템</li>
+                        </ul>
+                    </div>
+    
+                    <div class="tech-stack-section">
+                        <h6><i class="fas fa-code icon-fallback" data-fallback="💻"></i> 기술 스택</h6>
+                        <p class="mb-0">Java, Spring Boot, Vue.js, Go, JSP, Oracle, Hive, 온프레미스 서버, 분석/검색 엔진</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- 예거 -->
+            <div class="card job-card mb-4">
+                <div class="card-body">
+                    <div class="job-header">
+                        <h3 class="company-name">주식회사 예거</h3>
+                        <div class="job-period">
+                            <i class="fas fa-calendar-alt icon-fallback" data-fallback="📅"></i>
+                            2017.04 - 2019.07 (2년 4개월)
+                        </div>
+                    </div>
+                    <p class="job-title">백엔드 개발자 - 금융권 솔루션 개발</p>
+    
+                    <div class="achievement-section">
+                        <h5><i class="fas fa-university icon-fallback" data-fallback="🏛"></i> 금융권 솔루션 개발</h5>
+                        <ul class="achievement-list">
+                            <li><strong>현대캐피탈 CMS:</strong> 카테고리 세분화, 파일 삭제 방지, 히스토리 기능</li>
+                            <li><strong>삼성카드:</strong> 인생락서 기능 개발, RESTful API 개발 및 앱 연동</li>
+                            <li><strong>대웅제약:</strong> FreeMarker 사용 인트라넷 홈페이지 리뉴얼</li>
+                            <li><strong>통합계정 연동:</strong> Active Directory 연동 자동 로그인 처리</li>
+                            <li><strong>컨텐츠 관리:</strong> 다중 카테고리 일괄 배포 시스템 구현</li>
+                        </ul>
+                    </div>
+    
+                    <div class="tech-stack-section">
+                        <h6><i class="fas fa-code icon-fallback" data-fallback="💻"></i> 기술 스택</h6>
+                        <p class="mb-0">Java, JSP, jQuery, Spring, SQL, Active Directory, FreeMarker</p>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- 셀바스에이아이 -->
+            <div class="card job-card">
+                <div class="card-body">
+                    <div class="job-header">
+                        <h3 class="company-name">(주)셀바스에이아이</h3>
+                        <div class="job-period">
+                            <i class="fas fa-calendar-alt icon-fallback" data-fallback="📅"></i>
+                            2013.10 - 2014.10 (1년 1개월)
+                        </div>
+                    </div>
+                    <p class="job-title">개발자 - TTS 솔루션 개발</p>
+    
+                    <div class="achievement-section">
+                        <h5><i class="fas fa-volume-up icon-fallback" data-fallback="🔊"></i> TTS 솔루션</h5>
+                        <ul class="achievement-list">
+                            <li>TTS(Text-to-Speech) 설치/유지보수</li>
+                            <li>홈페이지 신규 음성 추가 및 유지보수</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
